@@ -98,10 +98,8 @@ class BreakoutView: UIView {
     
     // MARK: - Gesture Recognizer
     
-    // Fix Here because the brick become ghost
     func pushBrick() {
         
-        animator.removeAllBehaviors()
         animator.addBehavior(push)
         
     }
