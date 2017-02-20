@@ -13,6 +13,7 @@
 		D504B44C1E54B44400FE11E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D504B44A1E54B44400FE11E2 /* LaunchScreen.storyboard */; };
 		D504B4581E54B49800FE11E2 /* BreakoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B4571E54B49800FE11E2 /* BreakoutViewController.swift */; };
 		D504B45A1E54B4B300FE11E2 /* BreakoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B4591E54B4B300FE11E2 /* BreakoutView.swift */; };
+		D5772F351E5A8CB000C85323 /* BrickBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5772F341E5A8CB000C85323 /* BrickBehavior.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D504B44D1E54B44400FE11E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D504B4571E54B49800FE11E2 /* BreakoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakoutViewController.swift; sourceTree = "<group>"; };
 		D504B4591E54B4B300FE11E2 /* BreakoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakoutView.swift; sourceTree = "<group>"; };
+		D5772F341E5A8CB000C85323 /* BrickBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrickBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		D504B4561E54B46E00FE11E2 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				D5772F341E5A8CB000C85323 /* BrickBehavior.swift */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D504B45A1E54B4B300FE11E2 /* BreakoutView.swift in Sources */,
+				D5772F351E5A8CB000C85323 /* BrickBehavior.swift in Sources */,
 				D504B4421E54B44400FE11E2 /* AppDelegate.swift in Sources */,
 				D504B4581E54B49800FE11E2 /* BreakoutViewController.swift in Sources */,
 			);
@@ -338,6 +342,7 @@
 				D504B4521E54B44400FE11E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

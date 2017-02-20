@@ -10,6 +10,25 @@ import UIKit
 
 class BreakoutViewController: UIViewController {
 
+    @IBOutlet private weak var gameView: BreakoutView! {
+        didSet {
+            
+            // MARK: - Gesture Recognizer
+            gameView.addGestureRecognizer(UITapGestureRecognizer(target: gameView, action: #selector(gameView.pushBrick)))
+            gameView.addGestureRecognizer(UIPanGestureRecognizer(target: gameView, action: #selector(gameView.movingPaddle)))
+            
+        }
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        gameView.animating = true
+    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        gameView.animating = false
+    }
 }

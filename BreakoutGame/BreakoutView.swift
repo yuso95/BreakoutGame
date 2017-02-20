@@ -11,12 +11,44 @@ import UIKit
 class BreakoutView: UIView {
     
     // Add bricks to the view
-    
     private let brickPerRow = 5
     private let padding = 10
     
-    // UIVIews
-    private var movingBrick: UIView?
+    // Animation
+    private lazy var animator: UIDynamicAnimator = {
+       
+        let animator = UIDynamicAnimator(referenceView: self)
+        return animator
+    }()
+    
+    // Behaviors
+    let brickBehevior = BrickBehavior()
+    
+    private lazy var push: UIPushBehavior = {
+        
+        let push = UIPushBehavior(items: [self.movingBrick!], mode: .instantaneous)
+        push.active = true
+        push.setAngle(CGFloat(-(M_PI / 2)), magnitude: 0.2)
+        
+        return push
+    }()
+
+    
+    var animating: Bool = false {
+        didSet {
+            
+            if animating {
+                
+                animator.addBehavior(brickBehevior)
+            } else {
+                
+                animator.removeAllBehaviors()
+            }
+        }
+    }
+    
+    // UIViews
+    var movingBrick: UIView?
     private var horizontalPaddle: UIView?
     
     private var brickSize: CGSize {
@@ -27,8 +59,24 @@ class BreakoutView: UIView {
         return CGSize(width: widthSize, height: heightSize)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    // Remove aDecoder Init because the movingBrick and HorizontalPaddle don't reappear when the view is rotated
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Top bricks
+        for x in 1...brickPerRow {
+            for y in 1...3 {
+                
+                let frame = CGRect(x: CGFloat(padding * x) + CGFloat((x - 1)) * brickSize.width, y: CGFloat(padding * y) + CGFloat((y - 1)) * brickSize.height + 10, width: brickSize.width, height: brickSize.height)
+                let brick = UIView(frame: frame)
+                brick.backgroundColor = UIColor.blue
+                addSubview(brick)
+                
+                // Adding behaviors
+                brickBehevior.addItem(item: brick)
+            }
+        }
         
         // Moving paddle
         let movingFrame = CGRect(x: bounds.midX, y: bounds.midY, width: brickSize.width / 2, height: brickSize.width / 2)
@@ -42,38 +90,23 @@ class BreakoutView: UIView {
         horizontalPaddle!.backgroundColor = UIColor.green
         addSubview(horizontalPaddle!)
         
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        // Adding Behaviors
+        brickBehevior.addItem(item: movingBrick!)
+        brickBehevior.addItem(item: horizontalPaddle!)
         
-        // Top bricks
-        for x in 1...brickPerRow {
-            for y in 1...3 {
-                
-                let frame = CGRect(x: CGFloat(padding * x) + CGFloat((x - 1)) * brickSize.width, y: CGFloat(padding * y) + CGFloat((y - 1)) * brickSize.height + 10, width: brickSize.width, height: brickSize.height)
-                let brick = UIView(frame: frame)
-                brick.backgroundColor = UIColor.blue
-                addSubview(brick)
-            }
-        }
     }
     
-    private var animating: Bool = false {
-        didSet {
-            
-            if animating {
-                
-                
-            } else {
-                
-                
-            }
-        }
+    // MARK: - Gesture Recognizer
+    
+    // Fix Here because the brick become ghost
+    func pushBrick() {
+        
+        animator.removeAllBehaviors()
+        animator.addBehavior(push)
+        
     }
     
-    
-    
-    
-    
+    func movingPaddle() {
+        
+    }
 }
