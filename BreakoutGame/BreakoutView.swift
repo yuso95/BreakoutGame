@@ -101,10 +101,15 @@ class BreakoutView: UIView {
     func pushBrick() {
         
         animator.addBehavior(push)
-        
     }
     
-    func movingPaddle() {
+    func movingPaddle(_ recognizer: UIPanGestureRecognizer) {
         
+        let locationOfPan = recognizer.location(in: self)
+        
+        if recognizer.state == .changed {
+            
+            horizontalPaddle?.center = locationOfPan
+        }
     }
 }

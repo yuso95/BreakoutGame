@@ -15,7 +15,7 @@ class BreakoutViewController: UIViewController {
             
             // MARK: - Gesture Recognizer
             gameView.addGestureRecognizer(UITapGestureRecognizer(target: gameView, action: #selector(gameView.pushBrick)))
-            gameView.addGestureRecognizer(UIPanGestureRecognizer(target: gameView, action: #selector(gameView.movingPaddle)))
+            gameView.addGestureRecognizer(UIPanGestureRecognizer(target: gameView, action: #selector(gameView.movingPaddle(_:))))
             
         }
     }
