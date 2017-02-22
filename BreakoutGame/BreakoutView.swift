@@ -32,6 +32,13 @@ class BreakoutView: UIView {
         
         return push
     }()
+    
+    private lazy var gravity: UIGravityBehavior = {
+        
+        let gravity = UIGravityBehavior()
+        
+        return gravity
+    }()
 
     
     var animating: Bool = false {
@@ -101,6 +108,7 @@ class BreakoutView: UIView {
     func pushBrick() {
         
         animator.addBehavior(push)
+        animator.addBehavior(gravity) // Not Working
     }
     
     func movingPaddle(_ recognizer: UIPanGestureRecognizer) {
