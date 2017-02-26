@@ -10,6 +10,14 @@ import UIKit
 
 class BrickBehavior: UIDynamicBehavior {
     
+    private lazy var gravity: UIGravityBehavior = {
+        
+        let gravity = UIGravityBehavior()
+        gravity.magnitude = 1
+        
+        return gravity
+    }()
+    
     private lazy var collider: UICollisionBehavior = {
         
         let collider = UICollisionBehavior()
@@ -18,15 +26,33 @@ class BrickBehavior: UIDynamicBehavior {
         return collider
     }()
     
+    // Add itemBehavior
+    private var itemBehavior: UIDynamicItemBehavior {
+        
+        let itemBehavior = UIDynamicItemBehavior()
+        itemBehavior.elasticity = 1.0
+        itemBehavior.resistance = 1.0
+        itemBehavior.allowsRotation = false
+        return itemBehavior
+        
+    }
+    
     override init() {
         super.init()
         
         addChildBehavior(collider)
+        addChildBehavior(gravity)
+        addChildBehavior(itemBehavior)
     }
     
     func addItem(item: UIDynamicItem) {
         
         collider.addItem(item)
+        itemBehavior.addItem(item)
     }
     
+    func addGravityItemOnly(item: UIDynamicItem) {
+        
+        gravity.addItem(item)
+    }
 }

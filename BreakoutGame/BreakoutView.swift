@@ -28,18 +28,18 @@ class BreakoutView: UIView {
         
         let push = UIPushBehavior(items: [self.movingBrick!], mode: .instantaneous)
         push.active = true
-        push.setAngle(CGFloat(-(M_PI / 2)), magnitude: 0.2)
+        push.setAngle(CGFloat(arc4random()), magnitude: 0.2)
         
         return push
     }()
     
-    private lazy var gravity: UIGravityBehavior = {
-        
-        let gravity = UIGravityBehavior()
-        
-        return gravity
-    }()
-
+    // Attachment 
+    
+//    private lazy var attachment: UIAttachmentBehavior = {
+//        
+//        let attachment = UIAttachmentBehavior(item: horizontalPaddle!, attachedToAnchor: .zero)
+//        return attachment
+//    }()
     
     var animating: Bool = false {
         didSet {
@@ -108,7 +108,7 @@ class BreakoutView: UIView {
     func pushBrick() {
         
         animator.addBehavior(push)
-        animator.addBehavior(gravity) // Not Working
+        brickBehevior.addItem(item: movingBrick!)
     }
     
     func movingPaddle(_ recognizer: UIPanGestureRecognizer) {
