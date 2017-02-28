@@ -85,7 +85,7 @@ class BreakoutView: UIView {
             }
         }
         
-        // Moving paddle
+        // Moving brick
         let movingFrame = CGRect(x: bounds.midX, y: bounds.midY, width: brickSize.width / 2, height: brickSize.width / 2)
         movingBrick = UIView(frame: movingFrame)
         movingBrick!.backgroundColor = UIColor.red
@@ -119,5 +119,9 @@ class BreakoutView: UIView {
             
             horizontalPaddle?.center = locationOfPan
         }
+        
+        // Horizontal move
+
+        
     }
 }
